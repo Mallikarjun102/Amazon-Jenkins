@@ -6,7 +6,7 @@ pipeline {
     }
     stages {
 
-        stage('pull new scm') {
+        stage('pull scm') {
             steps {
                 git branch: 'main', url: 'https://github.com/PraveenKuber/Amazon-Jenkins.git'
             }
@@ -17,26 +17,12 @@ pipeline {
             }
         }
 
-        stage('build') {
-            steps {
-                 sh 'mvn clean install'
-            }
-        }
+        
 
         
     }
 
-  post{
-
-  success{
-     echo 'Build success'
-  }
-    
-  failure{
-       echo 'Failure in the build'
-   }
-
-  }
+  
 
 
 }
