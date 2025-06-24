@@ -24,22 +24,13 @@ post {
 failure {
     echo 'build is filed'
 
-
  }
 
 always{
     echo 'build is success or failed'
 
 }
-
+}        
 }
-
-        
-
-        
-    }
-
-  
-
-
+}
 }
