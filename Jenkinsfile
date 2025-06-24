@@ -16,6 +16,23 @@ pipeline {
                 sh 'mvn compile'
             }
         }
+post {
+ sucess {
+     echo 'build is succes'
+  }
+ 
+failure {
+    echo 'build is filed'
+
+
+ }
+
+always{
+    echo 'build is success or failed'
+
+}
+
+}
 
         
 
