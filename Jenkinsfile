@@ -15,21 +15,36 @@ pipeline {
                 sh 'mvn compile'
             }
         }
-post {
- sucesss {
-     echo 'build is succes'
-  }
- 
-failure {
-    echo 'build is filed'
 
- }
+} 
 
-always{
-    echo 'build is success or failed'
+    post {
+        success {
+            echo '✅ Pipeline succeeded!'
+            // Add actions like Slack/email notifications
+        }
+
+        failure {
+            echo '❌ Pipeline failed!'
+            // Actions for failure, like logging or alerts
+        }
+
+        unstable {
+            echo '⚠️ Pipeline is unstable!'
+            // Happens if a test fails but build still proceeds
+        }
+
+        aborted {
+            echo '⛔ Pipeline was aborted!'
+            // Actions for when a user aborts the pipeline
+        }
+
+        always {
+            echo '📌 This always runs (success, failure, aborted, unstable).'
+            // Clean up or archive artifacts
+        }
+    }
 
 }
-}        
-}
-}
+
 
