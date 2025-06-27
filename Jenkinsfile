@@ -31,7 +31,7 @@ pipeline {
     post {
   always {
     emailext(
-      to: 'you@example.com',
+      to: 'abctest080@gmail.com',
       subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
       body: """
         ${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}:
