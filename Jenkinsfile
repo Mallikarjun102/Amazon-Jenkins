@@ -28,23 +28,20 @@ pipeline {
 
     
 
- post {
-        success {
-            
-            emailext ( subject: "SUCCESS: ${PROJECT_NAME - Build} #${BUILD_NUMBER}  ${BUILD_STATUS}",
-                     body: "Good news!\nBuild succeeded: ${BUILD_STATUS}",
-                     to: 'abctest080@gmail.com'
-                      )
-        }
-        failure {
-            emailext ( subject: "SUCCESS: ${PROJECT_NAME - Build} #${BUILD_NUMBER}  ${BUILD_STATUS}",
-                     body: "Good news!\nBuild succeeded: ${BUILD_STATUS}",
-                     to: 'abctest080@gmail.com')
-        }
-        always {
-            echo 'This will always run, regardless of build result.'
-        }
-    }
+    post {
+  always {
+    emailext(
+      to: 'you@example.com',
+      subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
+      body: """
+        ${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}:
+
+        Check console output at ${env.BUILD_URL} to view the results.
+      """
+    )
+  }
+}
+
 
 
 }
