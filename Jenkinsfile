@@ -31,13 +31,13 @@ pipeline {
  post {
         success {
             
-            emailext ( subject: "SUCCESS: ${PROJECT_NAME - Build} #${BUILD_NUMBER}  ${BUILD_STATUS!}",
+            emailext ( subject: "SUCCESS: ${PROJECT_NAME - Build} #${BUILD_NUMBER}  ${BUILD_STATUS}",
                      body: "Good news!\nBuild succeeded: ${BUILD_STATUS}",
                      to: 'abctest080@gmail.com'
                       )
         }
         failure {
-            emailext ( subject: "SUCCESS: ${PROJECT_NAME - Build} #${BUILD_NUMBER}  ${BUILD_STATUS!}",
+            emailext ( subject: "SUCCESS: ${PROJECT_NAME - Build} #${BUILD_NUMBER}  ${BUILD_STATUS}",
                      body: "Good news!\nBuild succeeded: ${BUILD_STATUS}",
                      to: 'abctest080@gmail.com')
         }
