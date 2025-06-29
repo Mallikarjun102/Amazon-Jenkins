@@ -55,7 +55,7 @@ pipeline {
             // This block ensures that a message is sent regardless of success or failure
             script {
                 def buildStatus = currentBuild.result ?: 'SUCCESS'
-                def slackWebhookUrl = 'https://hooks.slack.com/services/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'
+                def slackWebhookUrl = 'https://hooks.slack.com/services/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'
                 def message = """
                 {
                     "text": "Jenkins Build Status: ${buildStatus}",
