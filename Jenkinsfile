@@ -30,7 +30,7 @@ pipeline {
 
     post {
   always {
-   emailext body: '$(env.BUILD_NUMBER)', subject: 'currentBuild', to: 'abctest080@gmai.com'
+   emailext body: '$(env.BUILD_NUMBER)', subject: 'currentBuild', to: 'sharanamma446@gmail.com'
     )
   }
 }
