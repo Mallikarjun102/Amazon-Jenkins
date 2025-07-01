@@ -5,8 +5,7 @@ pipeline {
         MAVEN_VERSION = '3.8.6'
         MAVEN_HOME = "${env.WORKSPACE}/apache-maven-${env.MAVEN_VERSION}"
         PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
-    }
-    environment {
+   
         PATH = "/usr/bin:/bin:/opt/homebrew/bin:$PATH"  // Explicitly add /usr/bin and other necessary paths
     }
     stages {
