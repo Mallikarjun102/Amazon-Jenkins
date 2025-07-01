@@ -12,7 +12,9 @@ pipeline {
         stage('Install Maven') {
             steps {
                 sh '''
-                    curl -O https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+                    
+                    curl -O https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+
                     tar -xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz
                 '''
             }
