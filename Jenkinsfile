@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    tools {
+    maven 'Maven 3.8.6' // match the name from configuration
+}
+
     environment {
         PATH = "/usr/bin:/bin:/opt/homebrew/bin:$PATH"  // Explicitly add /usr/bin and other necessary paths
     }
