@@ -1,13 +1,23 @@
 pipeline {
     agent any
-    tools {
-    maven 'Maven 3.8.6' // match the name from configuration
-}
 
+ environment {
+        MAVEN_VERSION = '3.8.6'
+        MAVEN_HOME = "${env.WORKSPACE}/apache-maven-${env.MAVEN_VERSION}"
+        PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
+    }
     environment {
         PATH = "/usr/bin:/bin:/opt/homebrew/bin:$PATH"  // Explicitly add /usr/bin and other necessary paths
     }
     stages {
+        stage('Install Maven') {
+            steps {
+                sh '''
+                    curl -O https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+                    tar -xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz
+                '''
+            }
+        }
         stage('Checkout Code') {
             steps {
                 // Pull the code from the GitHub repository
