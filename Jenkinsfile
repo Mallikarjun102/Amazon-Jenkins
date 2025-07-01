@@ -1,50 +1,40 @@
 pipeline {
     agent any
-    environment {
-        // Use PATH+EXTRA to append to PATH properly
-        PATH = "/usr/bin:/bin:/opt/homebrew/bin"
+
+ environment {
+        MAVEN_VERSION = '3.8.6'
+        MAVEN_HOME = "${env.WORKSPACE}/apache-maven-${env.MAVEN_VERSION}"
+        PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
+   
+        
     }
     stages {
-        stage('pull scm') {
+        stage('Install Maven') {
             steps {
-                git branch: 'main', url: 'https://github.com/PraveenKuber/Amazon-Jenkins.git'
+                sh '''
+                    
+                    curl -O https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+
+                    tar -xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz
+                '''
             }
         }
-        stage('compile') {
+        stage('Checkout Code') {
             steps {
-                sh 'mvn compile'
+                // Pull the code from the GitHub repository
+                git url: 'https://github.com/Mallikarjun102/Amazon-Jenkins', branch: 'main'  // Use the desired branch
             }
         }
 
-} 
-
-    post {
-        success {
-            echo '✅ Pipeline succeeded!'
-            // Add actions like Slack/email notifications
+        stage('Build') {
+            steps {
+                script {
+                    // Running the Maven build command
+                    echo "Building the project..."
+                    sh 'mvn clean install'
+                }
+            }
         }
 
-        failure {
-            echo '❌ Pipeline failed!'
-            // Actions for failure, like logging or alerts
-        }
-
-        unstable {
-            echo '⚠️ Pipeline is unstable!'
-            // Happens if a test fails but build still proceeds
-        }
-
-        aborted {
-            echo '⛔ Pipeline was aborted!'
-            // Actions for when a user aborts the pipeline
-        }
-
-        always {
-            echo '📌 This always runs (success, failure, aborted, unstable).'
-            // Clean up or archive artifacts
-        }
-    }
-
+    }  
 }
-
-
