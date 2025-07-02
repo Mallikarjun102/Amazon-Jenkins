@@ -1,13 +1,5 @@
 pipeline {
-    agent any
-
- environment {
-        MAVEN_VERSION = '3.8.6'
-        MAVEN_HOME = "${env.WORKSPACE}/apache-maven-${env.MAVEN_VERSION}"
-        PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
-   
-        
-    }
+    agent window
     stages {
         stage('Install Maven') {
             steps {
