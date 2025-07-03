@@ -1,5 +1,5 @@
 pipeline {
-    agent window
+    agent  { label 'window' }
       tools {
         maven 'maven 396'  // Use the same name you gave in Global Tool Config
           jdk 'jdk 17'
