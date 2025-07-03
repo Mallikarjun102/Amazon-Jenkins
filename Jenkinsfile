@@ -7,11 +7,7 @@ pipeline {
     }
     stages {
 
-        stage('Java Version') {
-            steps {
-                bat 'java -version'
-            }
-        }
+       
        
         stage('Checkout Code') {
             steps {
