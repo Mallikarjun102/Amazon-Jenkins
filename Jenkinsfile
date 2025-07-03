@@ -1,7 +1,9 @@
 pipeline {
     agent window
       tools {
-        maven 'Maven 3.9.6'  // Use the same name you gave in Global Tool Config
+        maven 'maven 396'  // Use the same name you gave in Global Tool Config
+          jdk 'jdk 17'
+          
     }
     stages {
        
