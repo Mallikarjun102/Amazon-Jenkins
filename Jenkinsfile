@@ -1,16 +1,10 @@
 pipeline {
     agent window
+      tools {
+        maven 'Maven 3.9.6'  // Use the same name you gave in Global Tool Config
+    }
     stages {
-        stage('Install Maven') {
-            steps {
-                sh '''
-                    
-                    curl -O https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
-
-                    tar -xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz
-                '''
-            }
-        }
+       
         stage('Checkout Code') {
             steps {
                 // Pull the code from the GitHub repository
